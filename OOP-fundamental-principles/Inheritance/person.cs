@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Abstraction
+namespace Inheritance
 {
     class person
     {
-        private string name;
-        private int age;
-        private double weight;
-        private double height;
+        protected string name;
+        protected int age;
+        protected double weight;
+        protected double height;
 
         public person()
         {
             name = "Nguyen Van A";
             age = 20;
-            weight = 60;
-            height = 1.78;
+            weight = 70;
+            height = 1.88;
         }
         public void BMI()
         {

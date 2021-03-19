@@ -1,14 +1,13 @@
 ﻿using System;
 
-namespace Abstraction
+namespace Inheritance
 {
     class Program
     {
         static void Main(string[] args)
         {
-            person a = new person();
+            person a = new Vietnamese();
             a.BMI();
-
         }
     }
 }
