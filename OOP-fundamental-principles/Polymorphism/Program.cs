@@ -6,10 +6,10 @@ namespace Polymorphism
     {
         static void Main(string[] args)
         {
-            person a = new thuy();
-            a.eat();
-            a.learn();
-            a.sleep();
+            Person a = new Thuy();
+            a.Eat();
+            a.Learn();
+            a.Sleep();
         }
     }
 }

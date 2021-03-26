@@ -4,19 +4,19 @@ using System.Text;
 
 namespace Polymorphism
 {
-    class person
+    class Person
     {
-        protected string name;
-        protected int age;
-        public virtual void eat()
+        protected string _name;
+        protected int _age;
+        public virtual void Eat()
         {
             Console.WriteLine("This person is eating\n");
         }
-        public virtual void learn()
+        public virtual void Learn()
         {
             Console.WriteLine("This person is learning\n");
         }
-        public virtual void sleep()
+        public virtual void Sleep()
         {
             Console.WriteLine("This person is sleeping\n");
         }

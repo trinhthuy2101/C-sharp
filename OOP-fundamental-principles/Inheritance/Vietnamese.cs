@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Inheritance
 {
-    class Vietnamese:person
+    class Vietnamese:Person
     {
         public Vietnamese()
         {
-            weight = 58;
-            height = 1.75;
+            _weight = 58;
+            _height = 1.75;
         }
     }
 }

@@ -4,24 +4,24 @@ using System.Text;
 
 namespace Abstraction
 {
-    class person
+    class Person
     {
-        private string name;
-        private int age;
-        private double weight;
-        private double height;
+        private string _name;
+        private int _age;
+        private double _weight;
+        private double _height;
 
-        public person()
+        public Person()
         {
-            name = "Nguyen Van A";
-            age = 20;
-            weight = 60;
-            height = 1.78;
+            _name = "Nguyen Van A";
+            _age = 20;
+            _weight = 60;
+            _height = 1.78;
         }
         public void BMI()
         {
             Console.WriteLine("BMI index:");
-            Console.WriteLine(weight / (height * height));
+            Console.WriteLine(_weight / (_height * _height));
         }
     }
 }

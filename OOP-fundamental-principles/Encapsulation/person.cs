@@ -4,19 +4,20 @@ using System.Text;
 
 namespace Encapsulation
 {
-    class person
+    class Person
     {
-        private string name;
-        private int age;
-        public void eat()
+        private string _name;
+        private int _age;
+        public void Eat()
         {
             Console.WriteLine("This person is eating\n");
         }
-        public void learn()
+        public void Learn()
         {
             Console.WriteLine("This person is learning\n");
         }
-        public void sleep() {
+        public void Sleep()
+        {
             Console.WriteLine("This person is sleeping\n");
         }
        

@@ -9,10 +9,10 @@ namespace Encapsulation
     {
         static void Main(string[] args)
         {
-            person a=new person();
-            a.eat();
-            a.learn();
-            a.sleep();
+            Person a=new Person();
+            a.Eat();
+            a.Learn();
+            a.Sleep();
         }
     }
 }

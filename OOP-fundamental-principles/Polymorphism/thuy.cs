@@ -4,17 +4,17 @@ using System.Text;
 
 namespace Polymorphism
 {
-    class thuy:person
+    class Thuy:Person
     {
-        public override void eat()
+        public override void Eat()
         {
             Console.WriteLine("Thuy is eating\n");
         }
-        public override void learn()
+        public override void Learn()
         {
             Console.WriteLine("Thuy is learning\n");
         }
-        public override void sleep()
+        public override void Sleep()
         {
             Console.WriteLine("Thuy is sleeping\n");
         }

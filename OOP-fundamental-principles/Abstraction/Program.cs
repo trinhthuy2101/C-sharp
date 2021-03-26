@@ -6,9 +6,8 @@ namespace Abstraction
     {
         static void Main(string[] args)
         {
-            person a = new person();
+            Person a = new Person();
             a.BMI();
-
         }
     }
 }

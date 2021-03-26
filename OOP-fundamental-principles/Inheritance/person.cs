@@ -4,24 +4,24 @@ using System.Text;
 
 namespace Inheritance
 {
-    class person
+    class Person
     {
-        protected string name;
-        protected int age;
-        protected double weight;
-        protected double height;
+        protected string _name;
+        protected int _age;
+        protected double _weight;
+        protected double _height;
 
-        public person()
+        public Person()
         {
-            name = "Nguyen Van A";
-            age = 20;
-            weight = 70;
-            height = 1.88;
+            _name = "Nguyen Van A";
+            _age = 20;
+            _weight = 70;
+            _height = 1.88;
         }
         public void BMI()
         {
             Console.WriteLine("BMI index:");
-            Console.WriteLine(weight / (height * height));
+            Console.WriteLine(_weight / (_height * _height));
         }
     }
 }

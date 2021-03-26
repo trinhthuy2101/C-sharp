@@ -6,7 +6,7 @@ namespace Inheritance
     {
         static void Main(string[] args)
         {
-            person a = new Vietnamese();
+            Person a = new Vietnamese();
             a.BMI();
         }
     }
