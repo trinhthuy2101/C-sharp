@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Console_App_Students
 {
@@ -7,18 +8,12 @@ namespace Console_App_Students
         static void Main(string[] args)
         {
             CStudent a = new CStudent();
-            //a.Add();
-            //a.Show();
-            //a.Update();
-            a.InputClassName();
-            a.InputDepartmentName();
-            a.InputUniName();
-            Console.ReadKey();
-            a.Delete();
-            a.Show();
-            a.OuputClassName();
-            a.OuputDepartmentName();
-            a.OuputUniName();
+            List<CStudent> MyList = new List<CStudent>();
+            a.Add();
+            MyList.Add(a);
+            MyList[0].Show();
+            MyList[0].Update();
+            MyList[0].Show();
         }
     }
 }

@@ -11,3 +11,16 @@ C:\Users\thuy\source\repos\Console-App-Students\obj\Debug\netcoreapp3.1\Console-
 C:\Users\thuy\source\repos\Console-App-Students\obj\Debug\netcoreapp3.1\Console-App-Students.dll
 C:\Users\thuy\source\repos\Console-App-Students\obj\Debug\netcoreapp3.1\Console-App-Students.pdb
 C:\Users\thuy\source\repos\Console-App-Students\obj\Debug\netcoreapp3.1\Console-App-Students.genruntimeconfig.cache
+D:\C-sharp\Console-App-Students\bin\Debug\netcoreapp3.1\Console-App-Students.exe
+D:\C-sharp\Console-App-Students\bin\Debug\netcoreapp3.1\Console-App-Students.deps.json
+D:\C-sharp\Console-App-Students\bin\Debug\netcoreapp3.1\Console-App-Students.runtimeconfig.json
+D:\C-sharp\Console-App-Students\bin\Debug\netcoreapp3.1\Console-App-Students.runtimeconfig.dev.json
+D:\C-sharp\Console-App-Students\bin\Debug\netcoreapp3.1\Console-App-Students.dll
+D:\C-sharp\Console-App-Students\bin\Debug\netcoreapp3.1\Console-App-Students.pdb
+D:\C-sharp\Console-App-Students\obj\Debug\netcoreapp3.1\Console-App-Students.csprojAssemblyReference.cache
+D:\C-sharp\Console-App-Students\obj\Debug\netcoreapp3.1\Console-App-Students.AssemblyInfoInputs.cache
+D:\C-sharp\Console-App-Students\obj\Debug\netcoreapp3.1\Console-App-Students.AssemblyInfo.cs
+D:\C-sharp\Console-App-Students\obj\Debug\netcoreapp3.1\Console-App-Students.csproj.CoreCompileInputs.cache
+D:\C-sharp\Console-App-Students\obj\Debug\netcoreapp3.1\Console-App-Students.dll
+D:\C-sharp\Console-App-Students\obj\Debug\netcoreapp3.1\Console-App-Students.pdb
+D:\C-sharp\Console-App-Students\obj\Debug\netcoreapp3.1\Console-App-Students.genruntimeconfig.cache
