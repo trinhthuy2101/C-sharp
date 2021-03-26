@@ -1,0 +1,13 @@
+C:\Users\thuy\source\repos\Console-App-Students\bin\Debug\netcoreapp3.1\Console-App-Students.exe
+C:\Users\thuy\source\repos\Console-App-Students\bin\Debug\netcoreapp3.1\Console-App-Students.deps.json
+C:\Users\thuy\source\repos\Console-App-Students\bin\Debug\netcoreapp3.1\Console-App-Students.runtimeconfig.json
+C:\Users\thuy\source\repos\Console-App-Students\bin\Debug\netcoreapp3.1\Console-App-Students.runtimeconfig.dev.json
+C:\Users\thuy\source\repos\Console-App-Students\bin\Debug\netcoreapp3.1\Console-App-Students.dll
+C:\Users\thuy\source\repos\Console-App-Students\bin\Debug\netcoreapp3.1\Console-App-Students.pdb
+C:\Users\thuy\source\repos\Console-App-Students\obj\Debug\netcoreapp3.1\Console-App-Students.csprojAssemblyReference.cache
+C:\Users\thuy\source\repos\Console-App-Students\obj\Debug\netcoreapp3.1\Console-App-Students.AssemblyInfoInputs.cache
+C:\Users\thuy\source\repos\Console-App-Students\obj\Debug\netcoreapp3.1\Console-App-Students.AssemblyInfo.cs
+C:\Users\thuy\source\repos\Console-App-Students\obj\Debug\netcoreapp3.1\Console-App-Students.csproj.CoreCompileInputs.cache
+C:\Users\thuy\source\repos\Console-App-Students\obj\Debug\netcoreapp3.1\Console-App-Students.dll
+C:\Users\thuy\source\repos\Console-App-Students\obj\Debug\netcoreapp3.1\Console-App-Students.pdb
+C:\Users\thuy\source\repos\Console-App-Students\obj\Debug\netcoreapp3.1\Console-App-Students.genruntimeconfig.cache
