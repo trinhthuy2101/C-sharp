@@ -11,24 +11,6 @@ namespace StudentManager.View
     class ViewInfo
     {
         CStudent s=new CStudent();
-        
-        //public string AddingSuccess(string name)
-        //{
-        //    return "Added:" + name;
-        //}
-        //public string UpdatingSuccess(int id)
-        //{
-        //    return "Updated" + id;
-        //}
-        //public string SavingSuccess(string msg)
-        //{
-        //    return "\nSave info: "+msg;
-        //}
-        //public string RemovingSuccess(int id)
-        //{
-        //    return "Removed\n"+id;
-        //}
-
         public void MessageForm(string action, string msg)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -44,7 +26,7 @@ namespace StudentManager.View
         public string ShowStudents(DataContext dataContext)
         {
             int i = 0;
-            int count = dataContext.UniversityModel._departmentModels[0]._classes[0]._students.Count();
+            int count = dataContext.UniversityModel._departmentModels.Count();
             if (count == 0) return "Student is empty\n";
             string buf="";
             while (i != count)

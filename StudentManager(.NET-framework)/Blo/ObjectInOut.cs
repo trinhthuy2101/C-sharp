@@ -45,7 +45,6 @@ namespace StudentManager.Blo
             {
                 return new DataContext();
             }
-
             return objnew;
         }
     }

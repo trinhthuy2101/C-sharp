@@ -13,7 +13,8 @@ namespace StudentManager.Blo
         {
             CStudent studentModel = new CStudent();
             studentModel._name = InfoInput("Ten");
-            studentModel._age = int.Parse(InfoInput("Tuoi"));
+            string age = InfoInput("Tuoi");
+            studentModel._age = int.Parse(age);
             studentModel._id = int.Parse(InfoInput("Id"));
             cls._students.Add(studentModel);
             dep._classes.Add(cls);

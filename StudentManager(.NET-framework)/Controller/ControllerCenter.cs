@@ -32,7 +32,7 @@ namespace StudentManager.Controller
                 switch (optionSelect)
                 {
                     case "1"://add new
-                        CStudent studentModel = _studentManagement.AddNewStudent(cls, dep, _dataContext); 
+                        CStudent studentModel = _studentManagement.AddNewStudent(cls, dep, _dataContext);
                         _viewInfo.MessageForm("Added: ",studentModel._name);
                         break;
                     case "2":
