@@ -11,52 +11,44 @@ namespace StudentManager.Controller
 {
     class ControllerCenter
     {
-        static string optionSelect = "";
-        static DataContext _dataContext;
-        static List<CUniversity> Universities { set; get; }
-
-        public static void InfoManagerment()
+        string optionSelect = "";
+        DataContext _dataContext;
+        List<CUniversity> Universities { set; get; }
+        ViewInfo _viewInfo = new ViewInfo();
+        ObjectInOut _objectInOut = new ObjectInOut();
+        StudentManagement _studentManagement = new StudentManagement();
+         
+        public void InfoManagerment()
         {
             var dep = new CDepartment();
             var cls = new CClass();
             cls._students = new List<CStudent>();
             dep._classes = new List<CClass>();
-          
+            _dataContext = _objectInOut.ReadData();
             do
             {
-                Console.WriteLine("Type to select:" + ViewInfo.GenerateInfoBoard());
+                Console.WriteLine("Type to select:" + _viewInfo.GenerateInfoBoard());
                 optionSelect = Console.ReadLine();
                 switch (optionSelect)
                 {
                     case "1"://add new
-                       
-                        if (_dataContext == null)
-                        {
-                            _dataContext = new DataContext();
-                        }
-                        CStudent studentModel = StudentManagement.AddNewStudent();
-                        cls._students.Add(studentModel);
-                        dep._classes.Add(cls);
-                        _dataContext.UniversityModel._departmentModels.Add(dep);
-                        Console.WriteLine(ViewInfo.AddingSuccess(studentModel._name));
+                        CStudent studentModel = _studentManagement.AddNewStudent(cls, dep, _dataContext); 
+                        _viewInfo.MessageForm("Added: ",studentModel._name);
                         break;
                     case "2":
-                        CStudent student = StudentManagement.UpdateStudent();
-                        cls._students.Add(student);
-                        dep._classes.Add(cls);
-                        _dataContext.UniversityModel._departmentModels.Add(dep);
-                        Console.WriteLine(ViewInfo.UpdatingSuccess(student._id));
+                        CStudent student = _studentManagement.UpdateStudent(cls, dep, _dataContext);
+                        _viewInfo.MessageForm("Updated: ", student._id + "-" + student._name);
                         break;
                     case "3"://remove
-                        int id=StudentManagement.RemoveStudent();
-                        Console.WriteLine(ViewInfo.RemovingSuccess(id));
+                        var st=_studentManagement.RemoveStudent(_dataContext);
+                        _viewInfo.MessageForm("Remove", st._id+"-"+st._name);
                         break;
                     case "4"://show
-                        ViewInfo.ShowStudents(_dataContext);
+                        Console.WriteLine(_viewInfo.ShowStudents(_dataContext));
                         break;
                     case "5"://save
-                        ObjectInOut.Save(_dataContext);
-                        Console.WriteLine(ViewInfo.SavingSuccess());
+                        var msg = _objectInOut.Save(_dataContext);
+                        _viewInfo.MessageForm("Saved", msg);
                         break;
                     case "6"://exit without saving
                         return;

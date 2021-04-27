@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudentManager.Model
 {
+    [Serializable]
     class DataContext
     {
             public string Version { set; get; }

@@ -12,42 +12,50 @@ namespace StudentManager.View
     {
         CStudent s=new CStudent();
         
-        public static string AddingSuccess(string name)
+        //public string AddingSuccess(string name)
+        //{
+        //    return "Added:" + name;
+        //}
+        //public string UpdatingSuccess(int id)
+        //{
+        //    return "Updated" + id;
+        //}
+        //public string SavingSuccess(string msg)
+        //{
+        //    return "\nSave info: "+msg;
+        //}
+        //public string RemovingSuccess(int id)
+        //{
+        //    return "Removed\n"+id;
+        //}
+
+        public void MessageForm(string action, string msg)
         {
-            return "Added:" + name;
-        }
-        public static string UpdatingSuccess(int id)
-        {
-            return "Updated" + id;
-        }
-        public static string SavingSuccess()
-        {
-            return "Saved\n";
-        }
-        public static string RemovingSuccess(int id)
-        {
-            return "Removed\n"+id;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(action + ": " + msg);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Press any key to continue");
         }
 
-        public static string Show(CStudent student)
+        public string Show(CStudent student)
         {
             return Convert.ToString(student._id)+"\n"+student._name+"\n" + Convert.ToString(student._age)+"\n";
         }
-        public static void ShowStudents(DataContext dataContext)
+        public string ShowStudents(DataContext dataContext)
         {
             int i = 0;
             int count = dataContext.UniversityModel._departmentModels[0]._classes[0]._students.Count();
+            if (count == 0) return "Student is empty\n";
+            string buf="";
             while (i != count)
             {
                 CStudent a = dataContext.UniversityModel._departmentModels[i]._classes[0]._students[0];
-                Console.WriteLine("Name: " + a._name + "\n");
-                Console.WriteLine("ID: " + a._id + "\n");
-                Console.WriteLine("Age: " + a._age + "\n");
+                buf+="Name: " + a._name + "\t" + "ID: " + a._id + "\t" + "Age: " + a._age + "\n";
                 i++;
             }
-
+            return buf;
         }
-        public static string GenerateInfoBoard()
+        public string GenerateInfoBoard()
         {
             List<string> actions = new List<string>()
             {

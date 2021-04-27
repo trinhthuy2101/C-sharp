@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Blo\ObjectInOut.cs" />
-    <Compile Include="Blo\ReadWrite.cs" />
     <Compile Include="Blo\StudentManagement.cs" />
     <Compile Include="Controller\ControllerCenter.cs" />
     <Compile Include="Model\Class.cs" />

@@ -12,7 +12,7 @@ namespace StudentManager.Blo
     class ObjectInOut
     {
         private const string filePath = @"Student.SM";
-        public static int Save(DataContext dataContext)
+        public string Save(DataContext dataContext)
         {
             try
             {
@@ -26,12 +26,12 @@ namespace StudentManager.Blo
             catch (Exception ex)
             {
 
-                return -1;
+                return ex.ToString();
             }
-            return 1;
+            return "Successful";
         }
 
-        public static DataContext ReadData()
+        public DataContext ReadData()
         {
             DataContext objnew = null;
             try
@@ -39,10 +39,11 @@ namespace StudentManager.Blo
                 IFormatter formatter = new BinaryFormatter();
                 Stream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
                 objnew = (DataContext)formatter.Deserialize(stream);
+                stream.Close();
             }
             catch (Exception ex)
             {
-                return null;
+                return new DataContext();
             }
 
             return objnew;

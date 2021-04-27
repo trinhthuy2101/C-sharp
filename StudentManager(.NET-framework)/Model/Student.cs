@@ -4,6 +4,7 @@ using System.Text;
 
 namespace StudentManager.Model
 {
+    [Serializable]
     class CStudent : CClass
     {
         public int _id { set; get; }

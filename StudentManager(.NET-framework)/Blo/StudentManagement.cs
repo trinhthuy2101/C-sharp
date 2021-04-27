@@ -9,46 +9,52 @@ namespace StudentManager.Blo
 {
     class StudentManagement
     {
-        public static CStudent AddNewStudent()
+        public CStudent AddNewStudent(CClass cls, CDepartment dep,DataContext _dataContext)
         {
             CStudent studentModel = new CStudent();
             studentModel._name = InfoInput("Ten");
             studentModel._age = int.Parse(InfoInput("Tuoi"));
             studentModel._id = int.Parse(InfoInput("Id"));
+            cls._students.Add(studentModel);
+            dep._classes.Add(cls);
+            _dataContext.UniversityModel._departmentModels.Add(dep);
             return studentModel;
         }
-        public static CStudent UpdateStudent()
+        public CStudent UpdateStudent(CClass cls, CDepartment dep, DataContext _dataContext)
         {
-            int id = RemoveStudent();
+            CStudent student = RemoveStudent(_dataContext);
             CStudent studentModel = new CStudent();
             studentModel._name = InfoInput("Ten");
             studentModel._age = int.Parse(InfoInput("Tuoi"));
-            studentModel._id = id;
+            studentModel._id = student._id;
+
+            cls._students.Add(studentModel);
+            dep._classes.Add(cls);
+            _dataContext.UniversityModel._departmentModels.Add(dep);
             return studentModel;
         }
-        public static int RemoveStudent()
+        public CStudent RemoveStudent(DataContext dataContext)
         {
             int id;
-            DataContext dataContext = ObjectInOut.ReadData();
             Console.WriteLine("Nhap MSSV: ");
             id = int.Parse(Console.ReadLine());
             int i = 0;
             int count = dataContext.UniversityModel._departmentModels.Count();
+            //Dictionary<string, string> Student;
             while (i!=count)
             {
                 if (dataContext.UniversityModel._departmentModels[i]._classes[0]._students[0]._id == id)
                 {
                     CStudent x = dataContext.UniversityModel._departmentModels[i]._classes[0]._students[0];
                     dataContext.UniversityModel._departmentModels[i]._classes[0]._students.Remove(x);
-                    break;
+                    return x;
                 }
                 i++;
             }
-            ObjectInOut.Save(dataContext);
-            return id;
+            return null;
         }
        
-        private static string InfoInput(string field)
+        private string InfoInput(string field)
         {
             Console.WriteLine("Xin nhap " + field);
             return Console.ReadLine();

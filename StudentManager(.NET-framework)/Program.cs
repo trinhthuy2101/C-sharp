@@ -11,7 +11,8 @@ namespace StudentManager
     {
         static void Main(string[] args)
         {
-            Controller.ControllerCenter.InfoManagerment();
+            ControllerCenter _controllerCenter = new ControllerCenter();
+           _controllerCenter.InfoManagerment();
         }
     }
 }
