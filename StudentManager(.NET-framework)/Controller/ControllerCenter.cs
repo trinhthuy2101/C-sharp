@@ -25,6 +25,11 @@ namespace StudentManager.Controller
             cls._students = new List<CStudent>();
             dep._classes = new List<CClass>();
             _dataContext = _objectInOut.ReadData();
+            if (_dataContext.UniversityModel._departmentModels.Count == 0)
+            {
+                dep._classes.Add(cls);
+                _dataContext.UniversityModel._departmentModels.Add(dep);
+            }
             do
             {
                 Console.WriteLine("Type to select:" + _viewInfo.GenerateInfoBoard());
@@ -37,11 +42,13 @@ namespace StudentManager.Controller
                         break;
                     case "2":
                         CStudent student = _studentManagement.UpdateStudent(cls, dep, _dataContext);
-                        _viewInfo.MessageForm("Updated: ", student._id + "-" + student._name);
+                        if (student == null) _viewInfo.MessageForm("Update: ", "Failed");
+                        else _viewInfo.MessageForm("Updated: ", student._id + "-" + student._name);
                         break;
                     case "3"://remove
                         var st=_studentManagement.RemoveStudent(_dataContext);
-                        _viewInfo.MessageForm("Remove", st._id+"-"+st._name);
+                        if (st == null) _viewInfo.MessageForm("Remove: ", "Failed");
+                       else  _viewInfo.MessageForm("Remove", st._id+"-"+st._name);
                         break;
                     case "4"://show
                         Console.WriteLine(_viewInfo.ShowStudents(_dataContext));

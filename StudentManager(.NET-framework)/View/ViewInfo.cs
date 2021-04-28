@@ -26,12 +26,12 @@ namespace StudentManager.View
         public string ShowStudents(DataContext dataContext)
         {
             int i = 0;
-            int count = dataContext.UniversityModel._departmentModels.Count();
+            int count = dataContext.UniversityModel._departmentModels[0]._classes[0]._students.Count();
             if (count == 0) return "Student is empty\n";
             string buf="";
             while (i != count)
             {
-                CStudent a = dataContext.UniversityModel._departmentModels[i]._classes[0]._students[0];
+                CStudent a = dataContext.UniversityModel._departmentModels[0]._classes[0]._students[i];
                 buf+="Name: " + a._name + "\t" + "ID: " + a._id + "\t" + "Age: " + a._age + "\n";
                 i++;
             }
