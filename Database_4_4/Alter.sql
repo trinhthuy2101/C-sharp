@@ -13,7 +13,13 @@ update Student set create_date=getdate()
 go
 alter table Class add create_date datetime
 go
+update Class set create_date=getdate()
+go
 alter table Department add create_date datetime
 go
+update Department set create_date=getdate()
+go
 alter table University add create_date datetime
+go
+update University set create_date=getdate()
 go
