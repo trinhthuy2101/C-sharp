@@ -1,4 +1,4 @@
-﻿use DBServer
+﻿use webt2289_StudentManager_Thuy
 go
 ------------------------------------------------STORE PROCEDURE-------------------------------------------
 create proc USP_PRINT_STUDENT_FULL

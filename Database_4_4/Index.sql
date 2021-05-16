@@ -1,4 +1,4 @@
-use DBServer
+use webt2289_StudentManager_Thuy
 go
 create unique index id on Student(S_id)
 go
