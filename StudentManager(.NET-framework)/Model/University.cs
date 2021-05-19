@@ -5,8 +5,8 @@ using System.Text;
 namespace StudentManager.Model
 {
     [Serializable]
-    class CUniversity
+    class University
     {
-        public List<CDepartment> _departmentModels = new List<CDepartment>();
+        public List<Department> DepartmentModels = new List<Department>();
     }
 }

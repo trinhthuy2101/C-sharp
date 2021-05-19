@@ -5,10 +5,10 @@ using System.Text;
 namespace StudentManager.Model
 {
     [Serializable]
-    class CStudent : CClass
+    class Student : Class
     {
-        public int _id { set; get; }
-        public string _name { set; get; }
-        public int _age;
+        public int Id { set; get; }
+        public string Name { set; get; }
+        public int Age;
     }
 }

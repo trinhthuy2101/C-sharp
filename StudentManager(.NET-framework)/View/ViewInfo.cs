@@ -10,7 +10,7 @@ namespace StudentManager.View
 {
     class ViewInfo
     {
-        CStudent s=new CStudent();
+        Student S=new Student();
         public void MessageForm(string action, string msg)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -19,20 +19,20 @@ namespace StudentManager.View
             Console.WriteLine("Press any key to continue");
         }
 
-        public string Show(CStudent student)
+        public string Show(Student student)
         {
-            return Convert.ToString(student._id)+"\n"+student._name+"\n" + Convert.ToString(student._age)+"\n";
+            return Convert.ToString(student.Id)+"\n"+student.Name+"\n" + Convert.ToString(student.Age)+"\n";
         }
-        public string ShowStudents(DataContext dataContext)
+        public string ShowListStudent(DataContext dataContext)
         {
             int i = 0;
-            int count = dataContext.UniversityModel._departmentModels[0]._classes[0]._students.Count();
+            int count = dataContext.UniversityModel.DepartmentModels[0].Classes[0].Students.Count();
             if (count == 0) return "Student is empty\n";
             string buf="";
             while (i != count)
             {
-                CStudent a = dataContext.UniversityModel._departmentModels[0]._classes[0]._students[i];
-                buf+="Name: " + a._name + "\t" + "ID: " + a._id + "\t" + "Age: " + a._age + "\n";
+                Student a = dataContext.UniversityModel.DepartmentModels[0].Classes[0].Students[i];
+                buf+="Name: " + a.Name + "\t" + "ID: " + a.Id + "\t" + "Age: " + a.Age + "\n";
                 i++;
             }
             return buf;
@@ -41,7 +41,7 @@ namespace StudentManager.View
         {
             List<string> actions = new List<string>()
             {
-                "Add new",
+                "Add",
                 "Update",
                 "Remove",
                 ">Show",

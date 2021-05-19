@@ -10,6 +10,6 @@ namespace StudentManager.Model
     class DataContext
     {
             public string Version { set; get; }
-            public CUniversity UniversityModel = new CUniversity();
+            public University UniversityModel = new University();
     }
 }
