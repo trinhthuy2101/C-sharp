@@ -185,7 +185,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="webt2289_StudentManager_ThuyEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="webt2289_StudentManager_ThuyEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Classes" EntityType="Self.Class" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="Students" EntityType="Self.Student" />
@@ -213,7 +213,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="webt2289_StudentManager_ThuyModelStoreContainer" CdmEntityContainer="webt2289_StudentManager_ThuyEntities1">
+        <EntityContainerMapping StorageEntityContainer="webt2289_StudentManager_ThuyModelStoreContainer" CdmEntityContainer="webt2289_StudentManager_ThuyEntities2">
           <EntitySetMapping Name="Classes">
             <EntityTypeMapping TypeName="webt2289_StudentManager_ThuyModel.Class">
               <MappingFragment StoreEntitySet="Class">
