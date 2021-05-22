@@ -1,0 +1,16 @@
+﻿@model ASP_NET_MVC.Models.Student
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+<ul>
+    <li>Student ID: <b>@Model.S_id</b></li>
+    <li>Full Name: <b>@Model.name</b></li>
+    <li>Gender: <b>@Model.gender</b></li>
+    <li>Birthday: <b>@Model.dob</b></li>
+    <li>Class: <b>@Model.Class</b></li>
+    <li>Creating day: <b>@Model.create_date</b></li>
+</ul>
+

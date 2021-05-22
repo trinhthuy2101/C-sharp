@@ -27,11 +27,9 @@
           </Key>
           <Property Name="S_id" Type="char" MaxLength="8" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="100" />
-          <Property Name="age" Type="int" />
           <Property Name="gender" Type="nchar" MaxLength="3" />
           <Property Name="dob" Type="date" />
-          <Property Name="class" Type="char" MaxLength="6" />
-          <Property Name="dep" Type="char" MaxLength="2" />
+          <Property Name="Class" Type="char" MaxLength="6" />
           <Property Name="create_date" Type="datetime" />
         </EntityType>
         <EntityType Name="University">
@@ -42,7 +40,7 @@
           <Property Name="name" Type="nvarchar" MaxLength="100" />
           <Property Name="create_date" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Class__dep__76969D2E">
+        <Association Name="FK__Class__dep__14270015">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="Class" Type="Self.Class" Multiplicity="*" />
           <ReferentialConstraint>
@@ -54,7 +52,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Department__uni__778AC167">
+        <Association Name="FK__Department__uni__151B244E">
           <End Role="University" Type="Self.University" Multiplicity="0..1" />
           <End Role="Department" Type="Self.Department" Multiplicity="*" />
           <ReferentialConstraint>
@@ -66,7 +64,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Student__class__75A278F5">
+        <Association Name="FK__Student__Class__1332DBDC">
           <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
           <ReferentialConstraint>
@@ -74,7 +72,7 @@
               <PropertyRef Name="C_id" />
             </Principal>
             <Dependent Role="Student">
-              <PropertyRef Name="class" />
+              <PropertyRef Name="Class" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -88,15 +86,15 @@
           <EntitySet Name="Department" EntityType="Self.Department" Schema="webt2289_thuy" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="webt2289_thuy" store:Type="Tables" />
           <EntitySet Name="University" EntityType="Self.University" Schema="webt2289_thuy" store:Type="Tables" />
-          <AssociationSet Name="FK__Class__dep__76969D2E" Association="Self.FK__Class__dep__76969D2E">
+          <AssociationSet Name="FK__Class__dep__14270015" Association="Self.FK__Class__dep__14270015">
             <End Role="Department" EntitySet="Department" />
             <End Role="Class" EntitySet="Class" />
           </AssociationSet>
-          <AssociationSet Name="FK__Department__uni__778AC167" Association="Self.FK__Department__uni__778AC167">
+          <AssociationSet Name="FK__Department__uni__151B244E" Association="Self.FK__Department__uni__151B244E">
             <End Role="University" EntitySet="University" />
             <End Role="Department" EntitySet="Department" />
           </AssociationSet>
-          <AssociationSet Name="FK__Student__class__75A278F5" Association="Self.FK__Student__class__75A278F5">
+          <AssociationSet Name="FK__Student__Class__1332DBDC" Association="Self.FK__Student__Class__1332DBDC">
             <End Role="Class" EntitySet="Class" />
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
@@ -113,8 +111,8 @@
           <Property Name="C_id" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="dep" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="create_date" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Department" Relationship="Self.FK__Class__dep__76969D2E" FromRole="Class" ToRole="Department" />
-          <NavigationProperty Name="Students" Relationship="Self.FK__Student__class__75A278F5" FromRole="Class" ToRole="Student" />
+          <NavigationProperty Name="Department" Relationship="Self.FK__Class__dep__14270015" FromRole="Class" ToRole="Department" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Student__Class__1332DBDC" FromRole="Class" ToRole="Student" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -123,8 +121,8 @@
           <Property Name="D_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="uni" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
           <Property Name="create_date" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Classes" Relationship="Self.FK__Class__dep__76969D2E" FromRole="Department" ToRole="Class" />
-          <NavigationProperty Name="University" Relationship="Self.FK__Department__uni__778AC167" FromRole="Department" ToRole="University" />
+          <NavigationProperty Name="Classes" Relationship="Self.FK__Class__dep__14270015" FromRole="Department" ToRole="Class" />
+          <NavigationProperty Name="University" Relationship="Self.FK__Department__uni__151B244E" FromRole="Department" ToRole="University" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -132,13 +130,11 @@
           </Key>
           <Property Name="S_id" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="age" Type="Int32" />
           <Property Name="gender" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
           <Property Name="dob" Type="DateTime" Precision="0" />
-          <Property Name="class" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="dep" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Class" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
           <Property Name="create_date" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Class1" Relationship="Self.FK__Student__class__75A278F5" FromRole="Student" ToRole="Class" />
+          <NavigationProperty Name="Class1" Relationship="Self.FK__Student__Class__1332DBDC" FromRole="Student" ToRole="Class" />
         </EntityType>
         <EntityType Name="University">
           <Key>
@@ -147,9 +143,9 @@
           <Property Name="U_id" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="create_date" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Departments" Relationship="Self.FK__Department__uni__778AC167" FromRole="University" ToRole="Department" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK__Department__uni__151B244E" FromRole="University" ToRole="Department" />
         </EntityType>
-        <Association Name="FK__Class__dep__76969D2E">
+        <Association Name="FK__Class__dep__14270015">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="Class" Type="Self.Class" Multiplicity="*" />
           <ReferentialConstraint>
@@ -161,7 +157,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Student__class__75A278F5">
+        <Association Name="FK__Student__Class__1332DBDC">
           <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
           <ReferentialConstraint>
@@ -169,11 +165,11 @@
               <PropertyRef Name="C_id" />
             </Principal>
             <Dependent Role="Student">
-              <PropertyRef Name="class" />
+              <PropertyRef Name="Class" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Department__uni__778AC167">
+        <Association Name="FK__Department__uni__151B244E">
           <End Role="University" Type="Self.University" Multiplicity="0..1" />
           <End Role="Department" Type="Self.Department" Multiplicity="*" />
           <ReferentialConstraint>
@@ -185,20 +181,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="webt2289_StudentManager_ThuyEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="webt2289_StudentManager_ThuyEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Classes" EntityType="Self.Class" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="Students" EntityType="Self.Student" />
           <EntitySet Name="Universities" EntityType="Self.University" />
-          <AssociationSet Name="FK__Class__dep__76969D2E" Association="Self.FK__Class__dep__76969D2E">
+          <AssociationSet Name="FK__Class__dep__14270015" Association="Self.FK__Class__dep__14270015">
             <End Role="Department" EntitySet="Departments" />
             <End Role="Class" EntitySet="Classes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Student__class__75A278F5" Association="Self.FK__Student__class__75A278F5">
+          <AssociationSet Name="FK__Student__Class__1332DBDC" Association="Self.FK__Student__Class__1332DBDC">
             <End Role="Class" EntitySet="Classes" />
             <End Role="Student" EntitySet="Students" />
           </AssociationSet>
-          <AssociationSet Name="FK__Department__uni__778AC167" Association="Self.FK__Department__uni__778AC167">
+          <AssociationSet Name="FK__Department__uni__151B244E" Association="Self.FK__Department__uni__151B244E">
             <End Role="University" EntitySet="Universities" />
             <End Role="Department" EntitySet="Departments" />
           </AssociationSet>
@@ -213,7 +209,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="webt2289_StudentManager_ThuyModelStoreContainer" CdmEntityContainer="webt2289_StudentManager_ThuyEntities2">
+        <EntityContainerMapping StorageEntityContainer="webt2289_StudentManager_ThuyModelStoreContainer" CdmEntityContainer="webt2289_StudentManager_ThuyEntities4">
           <EntitySetMapping Name="Classes">
             <EntityTypeMapping TypeName="webt2289_StudentManager_ThuyModel.Class">
               <MappingFragment StoreEntitySet="Class">
@@ -237,11 +233,9 @@
               <MappingFragment StoreEntitySet="Student">
                 <ScalarProperty Name="S_id" ColumnName="S_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="age" ColumnName="age" />
                 <ScalarProperty Name="gender" ColumnName="gender" />
                 <ScalarProperty Name="dob" ColumnName="dob" />
-                <ScalarProperty Name="class" ColumnName="class" />
-                <ScalarProperty Name="dep" ColumnName="dep" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
                 <ScalarProperty Name="create_date" ColumnName="create_date" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -20,18 +20,18 @@
     <div class="form">
         <b>Gender</b>
         @Html.DropDownListFor(m => m.gender, new List<SelectListItem>
-            { new SelectListItem{Text="Male", Value="M"},
-            new SelectListItem{Text="Female", Value="F"}}, "Please Select", new { @class = "form-control" })
+            { new SelectListItem{Text="Male", Value="Nam"},
+            new SelectListItem{Text="Female", Value="Nữ"}}, "Please Select", new { @class = "form-control" })
     </div>
     <div class="form">
         @Html.LabelFor(m => m.dob, "Birthday")
         @Html.TextBoxFor(m => m.dob, new { @class = "form-control" })
     </div>
     <div class="form">
-        @Html.LabelFor(m => m.@class, "Class")
-        @Html.TextBoxFor(m => m.@class, new { @class = "form-control" })
+        @Html.LabelFor(m => m.@Class, "Class")
+        @Html.TextBoxFor(m => m.@Class, new { @class = "form-control" })
     </div>
-    <div><input type="submit" value="Submit" class=" btn btn-success"/></div>
+    <div><input type="submit" value="Submit" class=" btn btn-success" /></div>
 }
 <style>
     .btn {

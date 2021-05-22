@@ -17,19 +17,15 @@
     <tbody>
         @foreach (var student in Model)
         {
-            <tr>
-                <td>
-                    <b>@student.S_id</b>
-                </td>
-                <td>
-                    @student.name
-                </td>
-                
-                <td>
-                    @Html.ActionLink("Update Student", "UpdateStudent", "Student")
-                </td>
-                <td>@Html.ActionLink("Remove Student", "RemoveStudent", "Student")</td>
-            </tr>
+        <tr>
+            <td><b>@student.S_id</b> </td>
+            <td> @student.name </td>
+            <td>
+                @Html.ActionLink("Edit", "UpdateStudent", new RouteValueDictionary(new { s = student.S_id }))|
+                @Html.ActionLink("Remove", "RemoveStudent", new RouteValueDictionary(new { s = student.S_id }))|
+                @Html.ActionLink("Details", "Details", new RouteValueDictionary(new { s = student.S_id }))|
+            </td>
+        </tr>
         }
     </tbody>
 </table>

@@ -16,11 +16,9 @@ namespace ASP_NET_MVC.Models
     {
         public string S_id { get; set; }
         public string name { get; set; }
-        public Nullable<int> age { get; set; }
         public string gender { get; set; }
         public Nullable<System.DateTime> dob { get; set; }
-        public string @class { get; set; }
-        public string dep { get; set; }
+        public string Class { get; set; }
         public Nullable<System.DateTime> create_date { get; set; }
     
         public virtual Class Class1 { get; set; }
