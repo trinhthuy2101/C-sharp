@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="828ca1b5f98b4b3abcd298b0029f8b53" Name="Diagram1">
+      <Diagram DiagramId="8eda7b3b22d54b9fa6a134e20946afb7" Name="Diagram1">
         <EntityTypeShape EntityType="webt2289_StudentManager_ThuyModel.Class" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="webt2289_StudentManager_ThuyModel.Department" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="webt2289_StudentManager_ThuyModel.Department" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="webt2289_StudentManager_ThuyModel.Student" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="webt2289_StudentManager_ThuyModel.University" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <AssociationConnector Association="webt2289_StudentManager_ThuyModel.FK__Class__dep__14270015" ManuallyRouted="false" />
-        <AssociationConnector Association="webt2289_StudentManager_ThuyModel.FK__Student__Class__1332DBDC" ManuallyRouted="false" />
-        <AssociationConnector Association="webt2289_StudentManager_ThuyModel.FK__Department__uni__151B244E" ManuallyRouted="false" />
+        <AssociationConnector Association="webt2289_StudentManager_ThuyModel.PK_CLASS_DEP" ManuallyRouted="false" />
+        <AssociationConnector Association="webt2289_StudentManager_ThuyModel.PK_STUDENT_CLASS" ManuallyRouted="false" />
+        <AssociationConnector Association="webt2289_StudentManager_ThuyModel.PK_DEP_UNI" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

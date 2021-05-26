@@ -1,6 +1,9 @@
 ﻿use webt2289_StudentManager_Thuy
 go
-
+DROP table Student
+drop table Class
+drop table Department
+drop table University
 create table Student
 (
 	S_id char(8),
@@ -14,14 +17,15 @@ go
 create table Class
 ( 
 	C_id char(6),
-	dep char(2),
+	dep char(4),
 	constraint PK_class primary key(C_id)
 )
 go
 create table Department
 (
-	D_id char(2),
+	D_id char(4),
 	uni char(4),
+	name nvarchar(50),
 	constraint PK_Dep primary key(D_id)
 )
 go
@@ -33,66 +37,62 @@ create table University
 )
 go
 ----------------
-alter table Student add foreign key(Class) references Class(C_id)
+alter table Student add CONSTRAINT PK_STUDENT_CLASS foreign key(Class) references Class(C_id)
 go
-alter table Class add foreign key(dep) references Department(D_id)
+alter table Class add CONSTRAINT PK_CLASS_DEP foreign key(dep) references Department(D_id)
 go
-alter table Department add foreign key(uni) references University(U_id)
+alter table Department add  CONSTRAINT PK_DEP_UNI foreign key(uni) references University(U_id)
 go
 ---------------
 insert into University values('KHTN',N'KHOA HỌC TỰ NHIÊN') 
 go
-insert into University values('UIT',N'CÔNG NGHỆ THÔNG TIN')
+insert into University values('HNED',N'ĐẠI HỌC SƯ PHẠM HÀ NỘI')
 go
 insert into University values('USSH',N'KHOA HỌC XÃ HỘI VÀ NHÂN VĂN')
 -----------
 go
-insert into Department values('A1','KHTN')
+insert into Department values('CNTT','KHTN',N'Công nghệ thông tin')
 go
-insert into Department values('A2','KHTN')
+insert into Department values('CNSH','KHTN',N'Công nghệ sinh học')
 go
-insert into Department values('I1','UIT')
+insert into Department values('SPLS','HNED',N'Sư phạm Sử')
 go
-insert into Department values('I2','UIT')
+insert into Department values('DTVT','HNED',N'Điện tử viễn thông')
 go
-insert into Department values('K1','USSH')
+insert into Department values('BCTT','USSH',N'Báo chí truyền thông')
 go
-insert into Department values('K2','USSH')
+insert into Department values('NDPH','USSH','Đông phương học')
 go
 -----------
 go
-insert into Class values('19CTT2','K1')
+insert into Class values('19CTT2','CNTT')
 go
-insert into Class values('19CNTN','K1')
+insert into Class values('19CNTN','CNTT')
 go
-insert into Class values('19CTT1','K2')
+insert into Class values('19CTT1','CNTT')
 go
-insert into Class values('19CTT3','K2')
+insert into Class values('19CSH1','CNSH')
 go
-insert into Class values('19BC01','A1')
+insert into Class values('19BC01','BCTT')
 go
-insert into Class values('19TT01','A1')
+insert into Class values('19TT01','BCTT')
 go
-insert into Class values('19DL01','A2')
+insert into Class values('19DL01','NDPH')
 go
-insert into Class values('19HQ01','A2')
+insert into Class values('19HQ01','NDPH')
 go
-insert into Class values('19KHMT','I1')
+insert into Class values('19KHMT','CNTT')
 go
-insert into Class values('19ATTT','I1')
+insert into Class values('19ATTT','CNTT')
 go
-insert into Class values('19HTTT','I2')
+insert into Class values('19HTTT','SPLS')
 go
-insert into Class values('19KTPM','I2')
+insert into Class values('19KTPM','SPLS')
 go
 --------------
 insert into Student values('19120390',N'Trịnh Thị Thùy',N'Nữ','01/21/2000','19CTT2')
 go
 insert into Student values('19120330',N'Nguyễn Đoan Phúc',N'Nữ','12/28/2001','19CTT2')
-go
-insert into Student values('19120489',N'Lưu Trường Dương',N'Nam','3/4/2000','19CTT3')
-go
-insert into Student values('19120388',N'Nguyễn Nhật Hải',N'Nam','5/8/2001','19CTT3')
 go
 insert into Student values('19120376',N'Nguyễn Lê Bảo Thi',N'Nữ','5/8/2001','19CNTN')
 go
@@ -181,9 +181,6 @@ begin
 	end
 end
 go
-insert into Student values('19120019',N'Nguyễn Thị Nhung','20',N'Nữ','12/28/2001','19CTT2','K1',getdate());
-go
-
 -------------PRINT NEAREST DELETED STUDENT------------------------------
 create trigger UTG_STUDENT_DELETE on Student after delete, update
 as
@@ -195,12 +192,6 @@ begin
 	EXEC USP_PRINT_STUDENT @sl_id,@sl_name;
 end
 go
---
-delete from Student where S_id='19120001'
-go
---
-update Student set name=N'Nguyễn Trần Khả Ái' where S_id='19120002'
-go
 -------------PRINT NEAREST INSERTED STUDENT----------------------------
 create trigger UTG_STUDENT_INSERT on Student after insert
 as
@@ -211,8 +202,6 @@ begin
 	from inserted I
 	EXEC USP_PRINT_STUDENT @sl_id,@sl_name;
 end
-go
-insert into Student values('19120020',N'Taylor Swift','20',N'Nữ','12/28/2001','19CTT2','K1',getdate());
 go
 
 

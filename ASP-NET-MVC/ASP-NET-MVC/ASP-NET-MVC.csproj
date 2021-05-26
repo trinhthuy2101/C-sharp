@@ -128,8 +128,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ClassController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\UniversityController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,11 +219,21 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Student\AddStudent.cshtml" />
-    <Content Include="Views\Student\RemoveStudent.cshtml" />
     <Content Include="Views\Student\UpdateStudent.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Student\Details.cshtml" />
     <Content Include="Views\Student\Notification.cshtml" />
+    <Content Include="Views\Class\Index.cshtml" />
+    <Content Include="Views\Class\AddClass.cshtml" />
+    <Content Include="Views\Class\UpdateClass.cshtml" />
+    <Content Include="Views\Class\Notification.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Department\AddDepartment.cshtml" />
+    <Content Include="Views\Department\Notification.cshtml" />
+    <Content Include="Views\Department\UpdateDepartment.cshtml" />
+    <Content Include="Views\University\Index.cshtml" />
+    <Content Include="Views\University\Notification.cshtml" />
+    <Content Include="Views\University\AddUniversity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

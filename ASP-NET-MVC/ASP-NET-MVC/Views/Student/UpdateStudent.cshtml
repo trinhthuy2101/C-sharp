@@ -9,12 +9,17 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-        
-<div class="form">
+
+    <div class="form">
         @Html.LabelFor(m => m.S_id, "Student ID")
         @Html.TextBoxFor(m => m.S_id, new { @readonly = "readonly", @class = "form-control" })
         @Html.ValidationMessageFor(m => m.S_id)
-</div>
+    </div>
+    <div class="form">
+        @Html.LabelFor(m => m.@Class, "Class")
+        @Html.TextBoxFor(m => m.@Class, new { @readonly = "readonly", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.@Class)
+    </div>
     <div class="form">
         @Html.LabelFor(m => m.name, "Full Name")
         @Html.TextBoxFor(m => m.name, new { @class = "form-control" })
@@ -32,11 +37,7 @@
         @Html.TextBoxFor(m => m.dob, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.dob)
     </div>
-    <div class="form">
-        @Html.LabelFor(m => m.@Class, "Class")
-        @Html.TextBoxFor(m => m.@Class, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.@Class)
-    </div>
+
     <div><input type="submit" value="Submit" class=" btn btn-success" /></div>
 }
 <style>

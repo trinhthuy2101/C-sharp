@@ -6,16 +6,17 @@ using System.Web.Mvc;
 using ASP_NET_MVC.Models;
 using System.Data.SqlClient;
 using System.Data;
+using System.Data.Entity;
 
 namespace ASP_NET_MVC.Controllers
 {
     public class StudentController : Controller
     {
         // GET: Student
-        private webt2289_StudentManager_ThuyEntities4 DB;
+        private webt2289_StudentManager_ThuyEntities6 DB;
         public StudentController()
         {
-            DB = new webt2289_StudentManager_ThuyEntities4();
+            DB = new webt2289_StudentManager_ThuyEntities6();
         }
         //SHOW
         public ActionResult Index()
@@ -36,13 +37,13 @@ namespace ASP_NET_MVC.Controllers
         [HttpPost]
         public ActionResult SaveStudent(Student student)
         {
-            List<Student> students = DB.Students.ToList();
-            for(int i = 0; i < students.Count; i++)
-            {
-                if (student.S_id == students[i].S_id) return RedirectToAction("Notification");
+            var st = DB.Students.Find(student.S_id);
+            if (st!=null){
+                return RedirectToAction("Notification", "Student");
             }
             if (ModelState.IsValid)
             {
+                student.create_date = DateTime.Now;
                 DB.Students.Add(student);
                 DB.SaveChanges();
             }
@@ -72,11 +73,7 @@ namespace ASP_NET_MVC.Controllers
             if (s.name != null) s1.name = s.name;
             if (s.gender != null) s1.gender = s.gender;
             if (s.dob != null) s1.dob = s.dob;
-            if (s.Class != null) s1.Class = s.Class;
-            var student = DB.Students.FirstOrDefault(st => st.S_id == s.S_id);
-            DB.Students.Remove(student);
-            DB.SaveChanges();
-            DB.Students.Add(s1);
+            DB.Entry(s1).State = EntityState.Modified;
             DB.SaveChanges();
             return RedirectToAction("Index", "Student");
         }

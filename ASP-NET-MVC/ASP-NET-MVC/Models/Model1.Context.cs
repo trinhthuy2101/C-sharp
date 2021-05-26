@@ -15,10 +15,10 @@ namespace ASP_NET_MVC.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class webt2289_StudentManager_ThuyEntities4 : DbContext
+    public partial class webt2289_StudentManager_ThuyEntities6 : DbContext
     {
-        public webt2289_StudentManager_ThuyEntities4()
-            : base("name=webt2289_StudentManager_ThuyEntities4")
+        public webt2289_StudentManager_ThuyEntities6()
+            : base("name=webt2289_StudentManager_ThuyEntities6")
         {
         }
     
