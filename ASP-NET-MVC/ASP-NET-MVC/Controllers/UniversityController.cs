@@ -9,14 +9,8 @@ using System.Data;
 
 namespace ASP_NET_MVC.Controllers
 {
-    public class UniversityController : Controller
+    public class UniversityController : BaseController
     {
-        // GET: University
-        private webt2289_StudentManager_ThuyEntities6 DB;
-        public UniversityController()
-        {
-            DB = new webt2289_StudentManager_ThuyEntities6();
-        }
         //SHOW
         public ActionResult Index()
         {

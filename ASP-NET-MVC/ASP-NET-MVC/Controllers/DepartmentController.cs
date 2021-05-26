@@ -10,14 +10,8 @@ using System.Data.Entity;
 
 namespace ASP_NET_MVC.Controllers
 {
-    public class DepartmentController : Controller
+    public class DepartmentController : BaseController
     {
-        // GET: Department
-        private webt2289_StudentManager_ThuyEntities6 DB;
-        public DepartmentController()
-        {
-            DB = new webt2289_StudentManager_ThuyEntities6();
-        }
         //SHOW
         public ActionResult Index()
         {

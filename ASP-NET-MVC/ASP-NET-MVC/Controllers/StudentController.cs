@@ -10,14 +10,8 @@ using System.Data.Entity;
 
 namespace ASP_NET_MVC.Controllers
 {
-    public class StudentController : Controller
+    public class StudentController : BaseController
     {
-        // GET: Student
-        private webt2289_StudentManager_ThuyEntities6 DB;
-        public StudentController()
-        {
-            DB = new webt2289_StudentManager_ThuyEntities6();
-        }
         //SHOW
         public ActionResult Index()
         {
