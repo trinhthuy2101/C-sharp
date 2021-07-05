@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="webt2289_StudentManager_ThuyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="C_id" />
+          </Key>
+          <Property Name="C_id" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="dep" Type="char" MaxLength="4" />
+          <Property Name="create_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="D_id" />
+          </Key>
+          <Property Name="D_id" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="uni" Type="char" MaxLength="4" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="create_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="S_id" />
+          </Key>
+          <Property Name="S_id" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="gender" Type="nchar" MaxLength="3" />
+          <Property Name="dob" Type="date" />
+          <Property Name="Class" Type="char" MaxLength="6" />
+          <Property Name="create_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="University">
+          <Key>
+            <PropertyRef Name="U_id" />
+          </Key>
+          <Property Name="U_id" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="create_date" Type="datetime" />
+        </EntityType>
+        <Association Name="PK_CLASS_DEP">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="D_id" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="dep" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PK_DEP_UNI">
+          <End Role="University" Type="Self.University" Multiplicity="0..1" />
+          <End Role="Department" Type="Self.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="U_id" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="uni" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PK_STUDENT_CLASS">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="C_id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="Class" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="USP_PRINT_STUDENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="webt2289_thuy">
+          <Parameter Name="S_id" Type="char" Mode="In" />
+          <Parameter Name="S_name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="USP_PRINT_STUDENT_FULL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="webt2289_thuy" />
+        <EntityContainer Name="webt2289_StudentManager_ThuyModelStoreContainer">
+          <EntitySet Name="Class" EntityType="Self.Class" Schema="webt2289_thuy" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="webt2289_thuy" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="webt2289_thuy" store:Type="Tables" />
+          <EntitySet Name="University" EntityType="Self.University" Schema="webt2289_thuy" store:Type="Tables" />
+          <AssociationSet Name="PK_CLASS_DEP" Association="Self.PK_CLASS_DEP">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Class" EntitySet="Class" />
+          </AssociationSet>
+          <AssociationSet Name="PK_DEP_UNI" Association="Self.PK_DEP_UNI">
+            <End Role="University" EntitySet="University" />
+            <End Role="Department" EntitySet="Department" />
+          </AssociationSet>
+          <AssociationSet Name="PK_STUDENT_CLASS" Association="Self.PK_STUDENT_CLASS">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="webt2289_StudentManager_ThuyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="C_id" />
+          </Key>
+          <Property Name="C_id" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="dep" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="create_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Department" Relationship="Self.PK_CLASS_DEP" FromRole="Class" ToRole="Department" />
+          <NavigationProperty Name="Students" Relationship="Self.PK_STUDENT_CLASS" FromRole="Class" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="D_id" />
+          </Key>
+          <Property Name="D_id" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="uni" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="create_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Classes" Relationship="Self.PK_CLASS_DEP" FromRole="Department" ToRole="Class" />
+          <NavigationProperty Name="University" Relationship="Self.PK_DEP_UNI" FromRole="Department" ToRole="University" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="S_id" />
+          </Key>
+          <Property Name="S_id" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="dob" Type="DateTime" Precision="0" />
+          <Property Name="Class" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="create_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Class1" Relationship="Self.PK_STUDENT_CLASS" FromRole="Student" ToRole="Class" />
+        </EntityType>
+        <EntityType Name="University">
+          <Key>
+            <PropertyRef Name="U_id" />
+          </Key>
+          <Property Name="U_id" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="create_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Departments" Relationship="Self.PK_DEP_UNI" FromRole="University" ToRole="Department" />
+        </EntityType>
+        <Association Name="PK_CLASS_DEP">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="D_id" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="dep" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PK_STUDENT_CLASS">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="C_id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="Class" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PK_DEP_UNI">
+          <End Role="University" Type="Self.University" Multiplicity="0..1" />
+          <End Role="Department" Type="Self.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="U_id" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="uni" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="webt2289_StudentManager_ThuyEntities6" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Classes" EntityType="Self.Class" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="Universities" EntityType="Self.University" />
+          <AssociationSet Name="PK_CLASS_DEP" Association="Self.PK_CLASS_DEP">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Class" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="PK_STUDENT_CLASS" Association="Self.PK_STUDENT_CLASS">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="PK_DEP_UNI" Association="Self.PK_DEP_UNI">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="Department" EntitySet="Departments" />
+          </AssociationSet>
+          <FunctionImport Name="USP_PRINT_STUDENT">
+            <Parameter Name="S_id" Mode="In" Type="String" />
+            <Parameter Name="S_name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_PRINT_STUDENT_FULL" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="webt2289_StudentManager_ThuyModelStoreContainer" CdmEntityContainer="webt2289_StudentManager_ThuyEntities6">
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="webt2289_StudentManager_ThuyModel.Class">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="C_id" ColumnName="C_id" />
+                <ScalarProperty Name="dep" ColumnName="dep" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="webt2289_StudentManager_ThuyModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="D_id" ColumnName="D_id" />
+                <ScalarProperty Name="uni" ColumnName="uni" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="webt2289_StudentManager_ThuyModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="S_id" ColumnName="S_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Universities">
+            <EntityTypeMapping TypeName="webt2289_StudentManager_ThuyModel.University">
+              <MappingFragment StoreEntitySet="University">
+                <ScalarProperty Name="U_id" ColumnName="U_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="USP_PRINT_STUDENT" FunctionName="webt2289_StudentManager_ThuyModel.Store.USP_PRINT_STUDENT" />
+          <FunctionImportMapping FunctionImportName="USP_PRINT_STUDENT_FULL" FunctionName="webt2289_StudentManager_ThuyModel.Store.USP_PRINT_STUDENT_FULL" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
