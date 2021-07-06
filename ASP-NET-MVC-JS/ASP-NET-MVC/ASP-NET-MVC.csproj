@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Ajax\AjaxClassController.cs" />
     <Compile Include="Controllers\Ajax\AjaxController.cs" />
+    <Compile Include="Controllers\Ajax\AjaxDepartmentController.cs" />
     <Compile Include="Controllers\Ajax\AjaxStudentController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
@@ -244,10 +245,10 @@
     <Content Include="Views\University\AddUniversity.cshtml" />
     <Content Include="Views\AjaxStudent\Index.cshtml" />
     <Content Include="Views\AjaxClass\Index.cshtml" />
+    <Content Include="Views\AjaxDepartment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\AjaxDepartment\" />
     <Folder Include="Views\AjaxUniversity\" />
   </ItemGroup>
   <ItemGroup>
