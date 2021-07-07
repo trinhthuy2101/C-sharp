@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 id="tit">Department</h2>
+<h2>Department</h2>
 
 <button id="createNewButton" class="btn-success" onclick="OpenAddNewForm()">Create New</button>
 <div class="grid">
@@ -88,7 +88,6 @@
         var outerID;
         //Show Department's Details
         function ViewDetails(id) {
-            document.getElementById("tit").innerHTML = id;
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function () {
                 const d = JSON.parse(this.responseText);
@@ -105,7 +104,7 @@
                 outerID = id;
                 dep.id = d.D_id; dep.uni = d.uni; dep.name = d.name;
             }
-            xhttp.open("GET", "https://localhost:44396/AjaxDepartment/Details" + `/${id}`);
+            xhttp.open("GET", "..//../AjaxDepartment/Details" + `/${id}`);
             xhttp.send();
         }
 
@@ -153,7 +152,7 @@
                 cell2.innerHTML = Duni;
                 cell1.onclick = function () { ViewDetails(`${Did}`); }
             }
-            xhttp.open("GET", "https://localhost:44396/AjaxDepartment/CreateNew?D_id=" + Did + "&uni="+Duni+"&name="+Dname);
+            xhttp.open("GET", "..//../AjaxDepartment/CreateNew?D_id=" + Did + "&uni="+Duni+"&name="+Dname);
             xhttp.send();
         }
 
@@ -183,12 +182,12 @@
             xhttp.onload = function () {
                 const d = JSON.parse(this.responseText);
                 var row = document.getElementById(`${d.D_id}`);
-                row.childNodes[3].innerHTML = dep.uni;
+                row.childNodes[3].innerHTML = d.uni;
                 document.getElementById("notification").innerHTML = "";
                 document.getElementById("updateSegment").style.display = "none";
-                alert("Updates Saved")
+                alert("Updates Saved");
             }
-            xhttp.open("GET", "https://localhost:44396/AjaxDepartment/Update?D_id=" + dep.id + "&uni=" + dep.uni+"&name="+dep.name );
+            xhttp.open("GET", "..//../AjaxDepartment/Update?D_id=" + dep.id + "&uni=" + dep.uni+"&name="+dep.name );
             xhttp.send();
         }
 
@@ -206,7 +205,7 @@
                         alert("Deleted!");
                     }
                 }
-                xhttp.open("GET", "https://localhost:44396/AjaxDepartment/Delete" + `/${outerID}`);
+                xhttp.open("GET", "..//../AjaxDepartment/Delete" + `/${outerID}`);
                 xhttp.send();
             }
         }

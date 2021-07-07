@@ -132,6 +132,7 @@
     <Compile Include="Controllers\Ajax\AjaxController.cs" />
     <Compile Include="Controllers\Ajax\AjaxDepartmentController.cs" />
     <Compile Include="Controllers\Ajax\AjaxStudentController.cs" />
+    <Compile Include="Controllers\Ajax\AjaxUniversityController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
@@ -246,10 +247,10 @@
     <Content Include="Views\AjaxStudent\Index.cshtml" />
     <Content Include="Views\AjaxClass\Index.cshtml" />
     <Content Include="Views\AjaxDepartment\Index.cshtml" />
+    <Content Include="Views\AjaxUniversity\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\AjaxUniversity\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

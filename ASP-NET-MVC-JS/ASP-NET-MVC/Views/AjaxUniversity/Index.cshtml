@@ -1,11 +1,11 @@
-﻿@model IEnumerable<ASP_NET_MVC.Models.Class>
+﻿@model IEnumerable<ASP_NET_MVC.Models.University>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Class</h2>
+<h2>University</h2>
 
 <button id="createNewButton" class="btn-success" onclick="OpenAddNewForm()">Create New</button>
 <div class="grid">
@@ -13,15 +13,15 @@
         <thead>
             <tr>
                 <td><b>ID</b></td>
-                <td><b>DEPARTMENT</b></td>
+                <td><b>NAME</b></td>
             </tr>
         </thead>
         <tbody>
-            @foreach (var clas in Model)
+            @foreach (var uni in Model)
             {
-                <tr id=@clas.C_id>
-                    <td onclick="ViewDetails('@clas.C_id')"><b>@clas.C_id</b></td>
-                    <td> @clas.dep </td>
+                <tr id=@uni.U_id>
+                    <td><b onclick="ViewDetails('@uni.U_id')">@uni.U_id</b></td>
+                    <td> @uni.name</td>
                 </tr>
             }
         </tbody>
@@ -31,26 +31,26 @@
         <h2 id="notification"></h2>
         <div id="detailSegment">
             <h4 id="id"></h4>
-            <h4 id="dep"></h4>
+            <h4 id="name"></h4>
             <button id="updateBut" class="btn-success" onclick="OpenUpdateForm()">Edit</button>
-            <button id="deleteBut" class="btn-danger" onclick="DeleteClass()">Remove</button>
+            <button id="deleteBut" class="btn-danger" onclick="DeleteUniversity()">Remove</button>
         </div>
         <div id="addSegment">
             <form id="addForm">
-                Class ID:
-                <input class="form-control" type="text" value="" name="Cid" /><br />
-                Department:
-                <input class="form-control" type="text" value="" name="Cdep" /><br />
+                University ID:
+                <input class="form-control" type="text" value="" name="Uid" /><br />
+                Name:
+                <input class="form-control" type="text" value="" name="Dname" /><br />
                 <button class="btn-success" type="button" id="addButton">Add</button>
             </form>
         </div>
         <div id="updateSegment">
             <form id="updateForm">
-                Class ID:
-                <input class="form-control" type="text" value="" name="Cid" readonly /><br />
-                Department:
-                <input class="form-control" type="text" value="" name="Cdep" /><br />
-                <button class="btn-success" type="button" id="saveButton" onclick="UpdateClass()">Save</button>
+                University ID:
+                <input class="form-control" type="text" value="" name="Uid" readonly /><br />
+                Name:
+                <input class="form-control" type="text" value="" name="Dname" /><br />
+                <button class="btn-success" type="button" id="saveButton" onclick="UpdateUniversity()">Save</button>
             </form>
         </div>
     </div>
@@ -75,16 +75,16 @@
 @section scripts
 {
     <script>
-        var cl = {
+        var uni = {
             id: "",
-            dep: "",
+            name:""
         }
         var outerID;
-        //Show Class's Details
+        //Show University's Details
         function ViewDetails(id) {
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function () {
-                const c = JSON.parse(this.responseText);
+                const u = JSON.parse(this.responseText);
                 document.getElementById("notification").innerHTML = "DETAILS";
                 document.getElementById("addSegment").style.display = "none";
                 document.getElementById("updateSegment").style.display = "none";
@@ -92,113 +92,115 @@
                 document.getElementById("deleteBut").style.display = "inline";
                 document.getElementById("updateBut").style.display = "inline";
 
-                document.getElementById("id").innerHTML = "ID: " + `${c.C_id}`;
-                document.getElementById("dep").innerHTML = "Dep: " + `${c.dep}`;
+                document.getElementById("id").innerHTML = "ID: " + `${u.U_id}`;
+                document.getElementById("name").innerHTML = "Name: " + `${u.name}`;
                 outerID = id;
-                cl.id = c.C_id; cl.dep = c.dep;
+                uni.id = u.U_id; uni.name = u.name;
             }
-            xhttp.open("GET", "..//../AjaxClass/Details" + `/${id}`);
+            xhttp.open("GET", "..//../AjaxUniversity/Details" + `/${id}`);
             xhttp.send();
         }
 
-        //Add new Class
+        //Add new University
         function OpenAddNewForm() {
-            document.getElementById("notification").innerHTML = "ADD NEW CLASS";
+            document.getElementById("notification").innerHTML = "ADD NEW UNIVERSITY";
             document.getElementById("addSegment").style.display = "unset";
             document.getElementById("updateSegment").style.display = "none";
             document.getElementById("detailSegment").style.display = "none";
 
-            var addClassForm = document.getElementById("addForm");
+            var addUniversityForm = document.getElementById("addForm");
             document.getElementById("addButton").addEventListener("click", function () {
-                CreateNew(addClassForm.childNodes[1].value,
-                    addClassForm.childNodes[4].value)
+                CreateNew(addUniversityForm.childNodes[1].value,
+                    addUniversityForm.childNodes[4].value)
             })
         }
-        function CreateNew(Cid,Cdep) {
-            if (Cid == "" || Cdep == "" ) {
+        function CreateNew(Uid,Uname) {
+            if (Uid == "" || Uname=="" ) {
                 alert("All information must be filled");
                 return;
             }
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function () {
-                var c = JSON.parse(this.responseText);
-                if (!c) {
-                    alert("Class existed");
+                var u = JSON.parse(this.responseText);
+                if (!u) {
+                    alert("University existed");
                     document.getElementById("notification").innerHTML = "";
                     document.getElementById("addSegment").style.display = "none";
                     return;
                 }
-                alert("Class Added");
+                alert("University Added");
 
                 document.getElementById("notification").innerHTML = "";
                 document.getElementById("addSegment").style.display = "none";
                 var table = document.getElementById("table");
                 var row = table.insertRow(1);
-                row.id = `${Cid}`;
+                row.id = `${Uid}`;
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
                 var bold = document.createElement("b");
-                var textNode = document.createTextNode(`${Cid}`)
+                var textNode = document.createTextNode(`${Uid}`)
                 bold.appendChild(textNode);
                 cell1.appendChild(bold);
-                cell2.innerHTML = Cdep;
-                cell1.onclick = function () { ViewDetails(`${Cid}`); }
+                cell2.innerHTML = Uname;
+                cell1.onclick = function () { ViewDetails(`${Uid}`); }
             }
-            xhttp.open("GET", "..//../AjaxClass/CreateNew?C_id=" + Cid + "&dep="+Cdep);
+            xhttp.open("GET", "..//../AjaxUniversity/CreateNew?U_id=" + Uid + "&name=" + Uname);
             xhttp.send();
         }
 
-        //Edit Class's Information
+        //Edit University's Information
         function OpenUpdateForm() {
-            document.getElementById("notification").innerHTML = "EDIT CLASS";
+            document.getElementById("notification").innerHTML = "EDIT UNIVERSITY";
             document.getElementById("updateSegment").style.display = "unset";
             document.getElementById("addSegment").style.display = "none";
             document.getElementById("detailSegment").style.display = "none";
 
-            var updateClassForm = document.getElementById("updateForm");
-            updateClassForm.childNodes[1].value = cl.id;
-            updateClassForm.childNodes[4].value = cl.dep;
+            var updateUniversityForm = document.getElementById("updateForm");
+            updateUniversityForm.childNodes[1].value = uni.id;
+            updateUniversityForm.childNodes[4].value = uni.name
         }
-        function UpdateClass() {
-            var updateClassForm = document.getElementById("updateForm");
-            cl.id = updateClassForm.childNodes[1].value;
-            cl.dep = updateClassForm.childNodes[4].value;
-            if (cl.id == "" || cl.dep == "" ) {
+        function UpdateUniversity() {
+            var updateUniversityForm = document.getElementById("updateForm");
+            uni.id = updateUniversityForm.childNodes[1].value;
+            uni.name = updateUniversityForm.childNodes[4].value;
+
+            if (uni.id == "" || uni.name=="" ) {
                 alert("All information must be filled");
                 return;
             }
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function () {
-                const c = JSON.parse(this.responseText);
-                var row = document.getElementById(`${c.C_id}`);
-                row.childNodes[3].innerHTML = c.dep;
+                const u = JSON.parse(this.responseText);
+                var row = document.getElementById(`${u.U_id}`);
+                row.childNodes[3].innerHTML = uni.name;
                 document.getElementById("notification").innerHTML = "";
                 document.getElementById("updateSegment").style.display = "none";
-                alert("Updates Saved")
+                alert("Updates Saved");
             }
-            xhttp.open("GET", "..//../AjaxClass/Update?C_id=" + cl.id + "&dep=" + cl.dep );
+            xhttp.open("GET", "..//../AjaxUniversity/Update?U_id=" + uni.id + "&name=" + uni.name );
             xhttp.send();
         }
 
-        //Delete Class
-        function DeleteClass() {
+        //Delete University
+        function DeleteUniversity() {
             var confirmed = confirm("Confirm deletion?")
             if (confirmed == true) {
                 const xhttp = new XMLHttpRequest();
+
                 xhttp.onload = function () {
-                    const c = JSON.parse(this.responseText);
-                    if (c) {
+                    if (u) {
                         document.getElementById(`${outerID}`).style.display = "none";
                         document.getElementById("notification").innerHTML = "";
                         document.getElementById("detailSegment").style.display = "none";
                         alert("Deleted!");
                     }
                 }
-                xhttp.open("GET", "..//../AjaxClass/Delete" + `/${outerID}`);
+                xhttp.open("GET", "..//../AjaxUniversity/Delete" + `/${outerID}`);
                 xhttp.send();
             }
         }
     </script>
 }
+
 
 

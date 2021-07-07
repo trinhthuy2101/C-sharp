@@ -118,7 +118,7 @@
                 outerID = id;
                 student.id = s.S_id; student.name = s.name; student.dob = s.dob; student.gender = s.gender; student.Class = s.Class;
             }
-            xhttp.open("GET", "https://localhost:44396/AjaxStudent/Details" + `/${id}`);
+            xhttp.open("GET", "..//../AjaxStudent/Details" + `/${id}`);
             xhttp.send();
         }
 
@@ -167,7 +167,7 @@
                 cell2.innerHTML = Sname;
                 cell1.onclick = function () { ViewDetails(`${Sid}`); }
             }
-            xhttp.open("GET", "https://localhost:44396/AjaxStudent/CreateNew?S_id=" + Sid + "&name=" + Sname + "&gender=" + Sgender + "&Class=" + Sclass);
+            xhttp.open("GET", "..//../AjaxStudent/CreateNew?S_id=" + Sid + "&name=" + Sname + "&gender=" + Sgender + "&Class=" + Sclass);
             xhttp.send();
         }
 
@@ -205,7 +205,7 @@
                 document.getElementById("updateSegment").style.display = "none";
                 alert("Updates Saved")
             }
-            xhttp.open("GET", "https://localhost:44396/AjaxStudent/Update?S_id=" + student.id + "&name=" + student.name  + "&gender=" + student.gender + "&Class=" + student.Class);
+            xhttp.open("GET", "..//../AjaxStudent/Update?S_id=" + student.id + "&name=" + student.name  + "&gender=" + student.gender + "&Class=" + student.Class);
             xhttp.send();
         }
 
@@ -223,7 +223,7 @@
                         alert("Deleted!");
                     }
                 }
-                xhttp.open("GET", "https://localhost:44396/AjaxStudent/Delete" + `/${outerID}`);
+                xhttp.open("GET", "..//../AjaxStudent/Delete" + `/${outerID}`);
                 xhttp.send();
             }
         }
