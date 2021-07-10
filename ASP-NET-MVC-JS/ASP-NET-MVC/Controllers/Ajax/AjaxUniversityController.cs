@@ -29,7 +29,10 @@ namespace ASP_NET_MVC.Controllers.Ajax
             University u = DB.Universities.Find(id);
             DB.Universities.Remove(u);
             DB.SaveChanges();
-            return Json(u, JsonRequestBehavior.AllowGet);
+            UniversityModel u1 = new UniversityModel();
+            u1.U_id = u.U_id;
+            u1.name = u.name;
+            return Json(u1, JsonRequestBehavior.AllowGet);
         }
         public JsonResult CreateNew(string U_id, string name)
         {

@@ -38,20 +38,28 @@
         <div id="addSegment">
             <form id="addForm">
                 Class ID:
-                <input class="form-control" type="text" value="" name="Cid" /><br />
+                <input id="Cid"class="form-control" type="text" value="" name="Cid" required maxlength="6" title="Field must be less than 6 characters long"/><br />
                 Department:
-                <input class="form-control" type="text" value="" name="Cdep" /><br />
+                <input id="Cdep" class="form-control" type="text" value="" name="Cdep" /><br />
                 <button class="btn-success" type="button" id="addButton">Add</button>
             </form>
         </div>
         <div id="updateSegment">
             <form id="updateForm">
                 Class ID:
-                <input class="form-control" type="text" value="" name="Cid" readonly /><br />
+                <input id="Cid_ud" class="form-control" type="text" value="" name="Cid" readonly /><br />
                 Department:
-                <input class="form-control" type="text" value="" name="Cdep" /><br />
+                <input id="Cdep_ud"class="form-control" type="text" value="" name="Cdep" /><br />
                 <button class="btn-success" type="button" id="saveButton" onclick="UpdateClass()">Save</button>
             </form>
+        </div>
+        <div>
+            <span role="alert" id="IDError" aria-hidden="true">
+                Please enter ID
+            </span>
+            <span role="alert" id="DepError" aria-hidden="true">
+                Please enter Department
+            </span>
         </div>
     </div>
 </div>
@@ -69,6 +77,16 @@
 
     #deleteBut, #updateBut, #addSegment, #updateSegment {
         display: none;
+    }
+    #deleteBut, #updateBut, #addSegment, #updateSegment {
+        display: none;
+    }
+    #IDError, #DepError{
+        display: none;
+        font-size: 0.8em;
+    }
+    input.invalid {
+        border-color: red;
     }
 </style>
 
@@ -116,7 +134,6 @@
         }
         function CreateNew(Cid,Cdep) {
             if (Cid == "" || Cdep == "" ) {
-                alert("All information must be filled");
                 return;
             }
             const xhttp = new XMLHttpRequest();
@@ -164,7 +181,6 @@
             cl.id = updateClassForm.childNodes[1].value;
             cl.dep = updateClassForm.childNodes[4].value;
             if (cl.id == "" || cl.dep == "" ) {
-                alert("All information must be filled");
                 return;
             }
             const xhttp = new XMLHttpRequest();
@@ -197,6 +213,64 @@
                 xhttp.open("GET", "..//../AjaxClass/Delete" + `/${outerID}`);
                 xhttp.send();
             }
+        }
+
+        //VALIDATION
+
+        const submit = document.getElementById("addButton");
+        submit.addEventListener("click", validate);
+        function validate(e) {
+            e.preventDefault();
+
+            const IDField = document.getElementById("Cid");
+            const DepField = document.getElementById("Cdep");
+            let valid = true;
+            //ID
+            if (!IDField.value) {
+                IDField.classList.add("invalid");
+                document.getElementById("IDError").style.display = "block";
+            }
+            else {
+                document.getElementById("IDError").style.display = "none";
+                IDField.classList.remove("invalid");
+            }
+            //Dep
+            if (!DepField.value) {
+                DepField.classList.add("invalid");
+                document.getElementById("DepError").style.display = "block";
+            } else {
+                document.getElementById("DepError").style.display = "none";
+                DepField.classList.remove("invalid");
+            }
+            return valid;
+        }
+
+        const updateSubmit = document.getElementById("saveButton");
+        updateSubmit.addEventListener("click", validateUpdate);
+        function validateUpdate(e) {
+            e.preventDefault();
+            const DepField_ud = document.getElementById("Cdep_ud");
+            const IDField_ud = document.getElementById("Cid_ud");
+
+            let valid = true;
+            //ID
+            if (!IDField_ud.value) {
+                IDField_ud.classList.add("invalid");
+                document.getElementById("IDError").style.display = "block";
+            }
+            else {
+                document.getElementById("IDError").style.display = "none";
+                IDField_ud.classList.remove("invalid");
+            }
+            //Dep
+            if (!DepField_ud.value) {
+                DepField_ud.classList.add("invalid");
+                document.getElementById("DepError").style.display = "block";
+            } else {
+                document.getElementById("DepError").style.display = "none";
+                DepField_ud.classList.remove("invalid");
+            }
+            return valid;
         }
     </script>
 }

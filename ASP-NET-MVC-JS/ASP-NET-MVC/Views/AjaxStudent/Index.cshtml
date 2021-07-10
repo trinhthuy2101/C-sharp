@@ -41,32 +41,47 @@
         <div id="addSegment">
             <form id="addForm">
                 Student ID:
-                <input class="form-control" type="text" value="" name="Sid" /><br />
+                <input id="Sid" class="form-control" type="text" value="" name="Sid" required maxlength="8" title="Field must be less than 8 characters long" /><br />
                 Name:
-                <input class="form-control" type="text" value="" name="Sname" /><br />
+                <input id="Sname" class="form-control" type="text" value="" name="Sname" /><br />
                 Birthday:
                 <input class="form-control" type="date" value="" name="Sdob" /><br />
                 Gender:
-                <input class="form-control" type="text" value="" name="Sgender" /><br />
+                <input id="Sgender" class="form-control" type="text" value="" name="Sgender" /><br />
                 Class:
-                <input class="form-control" type="text" value="" name="Sclass" /><br />
+                <input id="Sclass" class="form-control" type="text" value="" name="Sclass" /><br />
                 <button class="btn-success" type="button" id="addButton">Add</button>
+
             </form>
         </div>
         <div id="updateSegment">
             <form id="updateForm">
                 Student ID:
-                <input class="form-control" type="text" value="" name="Sid" readonly/><br />
+                <input id="Sid_ud" class="form-control" type="text" value="" name="Sid" readonly/><br />
                 Name:
-                <input class="form-control" type="text" value="" name="Sname" /><br />
+                <input id="Sname_ud"class="form-control" type="text" value="" name="Sname" /><br />
                 Birthday:
-                <input class="form-control" type="date" value="" name="Sdob" /><br />
+                <input  class="form-control" type="date" value="" name="Sdob" /><br />
                 Gender:
-                <input class="form-control" type="text" value="" name="Sgender" /><br />
+                <input id="Sgender_ud"class="form-control" type="text" value="" name="Sgender" /><br />
                 Class:
-                <input class="form-control" type="text" value="" name="Sclass" /><br />
+                <input id="Sclass_ud"class="form-control" type="text" value="" name="Sclass" /><br />
                 <button class="btn-success" type="button" id="saveButton" onclick="UpdateStudent()">Save</button>
             </form>
+        </div>
+        <div>
+            <span role="alert" id="IDError" aria-hidden="true">
+                Please enter ID
+            </span>
+            <span role="alert" id="NameError" aria-hidden="true">
+                Please enter Name
+            </span>
+            <span role="alert" id="GenderError" aria-hidden="true">
+                Please enter Gender
+            </span>
+            <span role="alert" id="ClassError" aria-hidden="true">
+                Please enter Class
+            </span>
         </div>
     </div>
 </div>
@@ -84,6 +99,15 @@
     #deleteBut, #updateBut,#addSegment,#updateSegment{
         display: none;
     }
+    #IDError,#NameError,#GenderError,#ClassError {
+        display: none;
+        font-size: 0.8em;
+    }
+
+    input.invalid {
+        border-color: red;
+    }
+    
 </style>
 
 @section scripts
@@ -139,7 +163,6 @@
         }
         function CreateNew(Sid, Sname, Sgender, Sclass) {
             if (Sid == "" || Sname == "" || Sgender == "" || Sclass == "") {
-                alert("All information must be filled");
                 return;
             }
             const xhttp = new XMLHttpRequest();
@@ -193,7 +216,6 @@
             student.gender = updateStudentForm.childNodes[10].value;
             student.Class = updateStudentForm.childNodes[13].value;
             if (student.id == "" || student.name == ""  || student.gender == "" || student.Class == "") {
-                alert("All information must be filled");
                 return;
             }
             const xhttp = new XMLHttpRequest();
@@ -226,6 +248,101 @@
                 xhttp.open("GET", "..//../AjaxStudent/Delete" + `/${outerID}`);
                 xhttp.send();
             }
+        }
+
+        //VALIDATION
+
+        const submit = document.getElementById("addButton");
+        submit.addEventListener("click", validate);
+        function validate(e) {
+            e.preventDefault();
+
+            const IDField = document.getElementById("Sid");
+            const NameField = document.getElementById("Sname");
+            const GenderField = document.getElementById("Sgender");
+            const ClassField = document.getElementById("Sclass");
+            let valid = true;
+            //ID
+            if (!IDField.value) {
+                IDField.classList.add("invalid");
+                document.getElementById("IDError").style.display = "block";
+            }
+            else {
+                document.getElementById("IDError").style.display = "none";
+                IDField.classList.remove("invalid");
+            }
+            //Name
+            if (!NameField.value) {
+                NameField.classList.add("invalid");
+                document.getElementById("NameError").style.display = "block";
+            } else {
+                document.getElementById("NameError").style.display = "none";
+                NameField.classList.remove("invalid");
+
+            }
+            //Gender
+            if (!GenderField.value) {
+                GenderField.classList.add("invalid");
+                document.getElementById("GenderError").style.display = "block";
+            } else {
+                document.getElementById("GenderError").style.display = "none";
+                GenderField.classList.remove("invalid");
+            }
+            //Class
+            if (!ClassField.value) {
+                ClassField.classList.add("invalid");
+                document.getElementById("ClassError").style.display = "block";
+            } else {
+                document.getElementById("ClassError").style.display = "none";
+                ClassField.classList.remove("invalid");
+            }
+            return valid;
+        }
+
+        const updateSubmit = document.getElementById("saveButton");
+        updateSubmit.addEventListener("click", validateUpdate);
+        function validateUpdate(e) {
+            e.preventDefault();
+            const IDField_ud = document.getElementById("Sid_ud");
+            const NameField_ud = document.getElementById("Sname_ud");
+            const GenderField_ud = document.getElementById("Sgender_ud");
+            const ClassField_ud = document.getElementById("Sclass_ud");
+
+            let valid = true;
+            //ID
+            if (!IDField_ud.value) {
+                IDField_ud.classList.add("invalid");
+                document.getElementById("IDError").style.display = "block";
+            }
+            else {
+                document.getElementById("IDError").style.display = "none";
+                IDField_ud.classList.remove("invalid");
+            }
+            //Name
+            if (!NameField_ud.value) {
+                NameField_ud.classList.add("invalid");
+                document.getElementById("NameError").style.display = "block";
+            } else {
+                document.getElementById("NameError").style.display = "none";
+                NameField_ud.classList.remove("invalid");
+            }
+            //Gender
+            if (!GenderField_ud.value) {
+                GenderField_ud.classList.add("invalid");
+                document.getElementById("GenderError").style.display = "block";
+            } else {
+                document.getElementById("GenderError").style.display = "none";
+                GenderField_ud.classList.remove("invalid");
+            }
+            //Class
+            if (!ClassField_ud.value) {
+                ClassField_ud.classList.add("invalid");
+                document.getElementById("ClassError").style.display = "block";
+            } else {
+                document.getElementById("ClassError").style.display = "none";
+                ClassField_ud.classList.remove("invalid");
+            }
+            return valid;
         }
     </script>
 }

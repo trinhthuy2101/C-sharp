@@ -38,20 +38,28 @@
         <div id="addSegment">
             <form id="addForm">
                 University ID:
-                <input class="form-control" type="text" value="" name="Uid" /><br />
+                <input id="Uid" class="form-control" type="text" value="" name="Uid" required maxlength="4" title="Field must be less than 4 characters long" /><br />
                 Name:
-                <input class="form-control" type="text" value="" name="Dname" /><br />
+                <input id="Uname" class="form-control" type="text" value="" name="Dname" /><br />
                 <button class="btn-success" type="button" id="addButton">Add</button>
             </form>
         </div>
         <div id="updateSegment">
             <form id="updateForm">
                 University ID:
-                <input class="form-control" type="text" value="" name="Uid" readonly /><br />
+                <input id="Uid_ud" class="form-control" type="text" value="" name="Uid" readonly /><br />
                 Name:
-                <input class="form-control" type="text" value="" name="Dname" /><br />
+                <input id="Uname_ud" class="form-control" type="text" value="" name="Dname" /><br />
                 <button class="btn-success" type="button" id="saveButton" onclick="UpdateUniversity()">Save</button>
             </form>
+        </div>
+        <div>
+            <span role="alert" id="IDError" aria-hidden="true">
+                Please enter ID
+            </span>
+            <span role="alert" id="NameError" aria-hidden="true">
+                Please enter Department Name
+            </span>
         </div>
     </div>
 </div>
@@ -69,6 +77,14 @@
 
     #deleteBut, #updateBut, #addSegment, #updateSegment {
         display: none;
+    }
+    #IDError, #NameError{
+        display: none;
+        font-size: 0.8em;
+    }
+
+    input.invalid {
+        border-color: red;
     }
 </style>
 
@@ -116,7 +132,6 @@
         }
         function CreateNew(Uid,Uname) {
             if (Uid == "" || Uname=="" ) {
-                alert("All information must be filled");
                 return;
             }
             const xhttp = new XMLHttpRequest();
@@ -165,7 +180,6 @@
             uni.name = updateUniversityForm.childNodes[4].value;
 
             if (uni.id == "" || uni.name=="" ) {
-                alert("All information must be filled");
                 return;
             }
             const xhttp = new XMLHttpRequest();
@@ -186,9 +200,9 @@
             var confirmed = confirm("Confirm deletion?")
             if (confirmed == true) {
                 const xhttp = new XMLHttpRequest();
-
                 xhttp.onload = function () {
-                    if (u) {
+                    const u1 = JSON.parse(this.responseText);
+                    if (u1) {
                         document.getElementById(`${outerID}`).style.display = "none";
                         document.getElementById("notification").innerHTML = "";
                         document.getElementById("detailSegment").style.display = "none";
@@ -198,6 +212,64 @@
                 xhttp.open("GET", "..//../AjaxUniversity/Delete" + `/${outerID}`);
                 xhttp.send();
             }
+        }
+
+
+        //VALIDATION
+        const submit = document.getElementById("addButton");
+        submit.addEventListener("click", validate);
+        function validate(e) {
+            e.preventDefault();
+
+            const IDField = document.getElementById("Uid");
+            const NameField = document.getElementById("Uname");
+            let valid = true;
+            //ID
+            if (!IDField.value) {
+                IDField.classList.add("invalid");
+                document.getElementById("IDError").style.display = "block";
+            }
+            else {
+                document.getElementById("IDError").style.display = "none";
+                IDField.classList.remove("invalid");
+            }
+            //Name
+            if (!NameField.value) {
+                NameField.classList.add("invalid");
+                document.getElementById("NameError").style.display = "block";
+            } else {
+                document.getElementById("NameError").style.display = "none";
+                NameField.classList.remove("invalid");
+            }
+            return valid;
+        }
+
+        const updateSubmit = document.getElementById("saveButton");
+        updateSubmit.addEventListener("click", validateUpdate);
+        function validateUpdate(e) {
+            e.preventDefault();
+            const IDField_ud = document.getElementById("Uid_ud");
+            const NameField_ud = document.getElementById("Uname_ud");
+            let valid = true;
+
+            //ID
+            if (!IDField_ud.value) {
+                IDField_ud.classList.add("invalid");
+                document.getElementById("IDError").style.display = "block";
+            }
+            else {
+                document.getElementById("IDError").style.display = "none";
+                IDField_ud.classList.remove("invalid");
+            }
+            //Name
+            if (!NameField_ud.value) {
+                NameField_ud.classList.add("invalid");
+                document.getElementById("NameError").style.display = "block";
+            } else {
+                document.getElementById("NameError").style.display = "none";
+                NameField_ud.classList.remove("invalid");
+            }
+            return valid;
         }
     </script>
 }

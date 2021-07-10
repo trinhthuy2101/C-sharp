@@ -39,28 +39,38 @@
         <div id="addSegment">
             <form id="addForm">
                 Department ID:
-                <input class="form-control" type="text" value="" name="Did" /><br />
+                <input id="Did" class="form-control" type="text" value="" name="Did" required maxlength="4" title="Field must be less than 4 characters long" /><br />
                 University: 
-                <input class="form-control" type="text" value="" name="Duni" /><br />
+                <input id="Duni" class="form-control" type="text" value="" name="Duni" /><br />
                 Name:
-                <input class="form-control" type="text" value="" name="Dname" /><br />
+                <input id="Dname" class="form-control" type="text" value="" name="Dname" /><br />
                 <button class="btn-success" type="button" id="addButton">Add</button>
             </form>
         </div>
         <div id="updateSegment">
             <form id="updateForm">
                 Department ID:
-                <input class="form-control" type="text" value="" name="Did" readonly /><br />
+                <input id="Did_ud" class="form-control" type="text" value="" name="Did" readonly /><br />
                 University:
-                <input class="form-control" type="text" value="" name="Duni" /><br />
+                <input id="Duni_ud"class="form-control" type="text" value="" name="Duni" /><br />
                 Name:
-                <input class="form-control" type="text" value="" name="Dname" /><br />
+                <input id="Dname_ud"class="form-control" type="text" value="" name="Dname" /><br />
                 <button class="btn-success" type="button" id="saveButton" onclick="UpdateDepartment()">Save</button>
             </form>
         </div>
+        <div>
+            <span role="alert" id="IDError" aria-hidden="true">
+                Please enter ID
+            </span>
+            <span role="alert" id="UniError" aria-hidden="true">
+                Please enter University
+            </span>
+            <span role="alert" id="NameError" aria-hidden="true">
+                Please enter Department Name
+            </span>
+        </div>
     </div>
-</div>
-
+ </div>
 <style>
     .grid {
         display: grid;
@@ -71,12 +81,17 @@
         border: ridge;
         padding: 10px;
     }
-
     #deleteBut, #updateBut, #addSegment, #updateSegment {
         display: none;
     }
+    #IDError, #NameError, #UniError {
+        display: none;
+        font-size: 0.8em;
+    }
+    input.invalid {
+        border-color: red;
+    }
 </style>
-
 @section scripts
 {
     <script>
@@ -124,7 +139,6 @@
         }
         function CreateNew(Did,Duni,Dname) {
             if (Did == "" || Duni == ""||Dname=="" ) {
-                alert("All information must be filled");
                 return;
             }
             const xhttp = new XMLHttpRequest();
@@ -175,7 +189,6 @@
             dep.name = updateDepartmentForm.childNodes[7].value;
 
             if (dep.id == "" || dep.uni == ""||dep.name=="" ) {
-                alert("All information must be filled");
                 return;
             }
             const xhttp = new XMLHttpRequest();
@@ -208,6 +221,81 @@
                 xhttp.open("GET", "..//../AjaxDepartment/Delete" + `/${outerID}`);
                 xhttp.send();
             }
+        }
+
+        //VALIDATION
+
+        const submit = document.getElementById("addButton");
+        submit.addEventListener("click", validate);
+        function validate(e) {
+            e.preventDefault();
+
+            const IDField = document.getElementById("Did");
+            const NameField = document.getElementById("Dname");
+            const UniField = document.getElementById("Duni");
+            let valid = true;
+            //ID
+            if (!IDField.value) {
+                IDField.classList.add("invalid");
+                document.getElementById("IDError").style.display = "block";
+            }
+            else {
+                document.getElementById("IDError").style.display = "none";
+                IDField.classList.remove("invalid");
+            }
+            //Name
+            if (!NameField.value) {
+                NameField.classList.add("invalid");
+                document.getElementById("NameError").style.display = "block";
+            } else {
+                document.getElementById("NameError").style.display = "none";
+                NameField.classList.remove("invalid");
+            }
+            //University
+            if (!UniField.value) {
+                UniField.classList.add("invalid");
+                document.getElementById("UniError").style.display = "block";
+            } else {
+                document.getElementById("UniError").style.display = "none";
+                UniField.classList.remove("invalid");
+            }
+            return valid;
+        }
+
+        const updateSubmit = document.getElementById("saveButton");
+        updateSubmit.addEventListener("click", validateUpdate);
+        function validateUpdate(e) {
+            e.preventDefault();
+            const IDField_ud = document.getElementById("Did_ud");
+            const NameField_ud = document.getElementById("Dname_ud");
+            const UniField_ud = document.getElementById("Duni_ud");
+
+            //ID
+            if (!IDField_ud.value) {
+                IDField_ud.classList.add("invalid");
+                document.getElementById("IDError").style.display = "block";
+            }
+            else {
+                document.getElementById("IDError").style.display = "none";
+                IDField_ud.classList.remove("invalid");
+            }
+            //Name
+            if (!NameField_ud.value) {
+                NameField_ud.classList.add("invalid");
+                document.getElementById("NameError").style.display = "block";
+            } else {
+                document.getElementById("NameError").style.display = "none";
+                NameField_ud.classList.remove("invalid");
+            }
+            //University
+            if (!UniField_ud.value) {
+                UniField_ud.classList.add("invalid");
+                document.getElementById("UniError").style.display = "block";
+            } else {
+                document.getElementById("UniError").style.display = "none";
+                UniField_ud.classList.remove("invalid");
+            }
+            return valid;
         }
     </script>
 }
